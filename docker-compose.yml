@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    image: raushanku90/dockerdemosep:0.0.1
+    ports:
+      - 8085:8085
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/dockerdb?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: springstudent
+      SPRING_DATASOURCE_PASSWORD: springstudent
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.28
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: springstudent
+      MYSQL_DATABASE: dockerdb
+      MYSQL_USER: springstudent
+      MYSQL_PASSWORD: springstudent
